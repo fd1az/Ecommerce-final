@@ -21,7 +21,7 @@ class Producto extends Ropa {
             console.log(this.cantidad)
         }
         this.cantidad == 0 
-        
+        //aca solo estaba probando 
     }
     
 }  
