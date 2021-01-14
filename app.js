@@ -16,11 +16,15 @@ class Producto extends Ropa {
         this.cantidad = cantidad
     } 
     increment(){
-        if(this.cantidad == this.id){
-            this.cantidad++
-            console.log(this.cantidad)
+
+        const cantidad = 0
+        if(cantidad == this.id){
+            cantidad++
+            console.log(cantidad)
         }
-        this.cantidad == 0 
+        cantidad == 0 
+
+        console.log(cantidad)
         //aca solo estaba probando 
     }
     
@@ -34,13 +38,14 @@ class UI {
     element.innerHTML= ` 
     <div class="card text-center mb-4"
         <div class="card-body"> 
-            <strong>Image </strong> : ${product.imagen}
+            <img class="imagen_card" src= ${product.imagen}></img>
             <strong>UrlImage </strong> : ${product.urlImagen}
             <strong>Product Name </strong> : ${product.titulo}
             <strong>Price </strong> : ${product.precio}
             <strong>id </strong> : ${product.id}
             <strong>Quantity </strong> : ${product.cantidad}
             
+           
         
         </div>
     
@@ -199,36 +204,46 @@ function init() {
     }
 //RENDER FUNCTION
 
-      
-
 
 //selectores
 
 
-const app = document.getElementById('app').addEventListener('click', function(e){
-    const imagen = document.querySelector('.imagen_card').src
-    const urlImagen = document.querySelector('.a_card').src
-    const titulo = document.querySelector('.titulo_card').textContent
-    const precio = document.querySelector('.precio_card').textContent
-    const id = document.querySelector('.boton-compra').id
-    const cantidad = 0
-    
-    
-
-
+ const app = document.getElementById('app').addEventListener('click', function(e){
+    const cards = document.querySelectorAll('.col-md-4').forEach((element) => {
+        const imagen = document.querySelector('.imagen_card').src
+        const titulo = document.querySelector('.titulo_card').textContent
+        const precio = document.querySelector('.precio_card').textContent
+        const id = document.querySelector('.boton-compra').id
+        let cantidad = 0
        
 
-        const product = new Producto (imagen,urlImagen,titulo,precio,id,cantidad)
-        product.increment();
-        product.increment();
-        
+        const product = new Producto (imagen,titulo,precio,id,cantidad)
 
-        const ui = new UI ();
-        ui.addProduct(product);
+        if(product.cantidad == product.id) {
+            product.increment()
+        }
+          else  {
+              product.cantidad++
+            
+            }
         
-
-        e.preventDefault()
-})
+   
+          
+   
+           
+            const ui = new UI ();
+            ui.addProduct(product);
+           
+   
+            e.preventDefault()
+            
+            
+            
+    })
+     
+    
+         
+ })
  
 
 
